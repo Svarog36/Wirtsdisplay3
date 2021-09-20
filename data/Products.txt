@@ -1,0 +1,10 @@
+!Vorspeisen
+Salat#4.5
+!Hauptspeisen
+Knödel#5.6
+Schweinebraten#10.5
+Kaiserschmarrn#8.0
+!Getraenke
+Spezi#2.5
+!Dessert
+Kaesekuchen#5.1
