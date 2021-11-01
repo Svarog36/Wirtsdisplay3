@@ -2,29 +2,59 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cntnt.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cntnt.Controller">
    <children>
-      <Pane fx:id="layer1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="787.0">
+      <Pane fx:id="layer1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0">
          <children>
-            <Button fx:id="produkteBearbeiten" layoutX="648.0" layoutY="14.0" mnemonicParsing="false" onAction="#showEditor" text="Produkte bearbeiten" />
-            <GridPane layoutX="221.0" layoutY="112.0" prefHeight="447.0" prefWidth="346.0" style="-fx-border-color: black;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button mnemonicParsing="false" text="Schnitzel" />
-               </children>
-            </GridPane>
+            <Button fx:id="produkteBearbeiten" layoutX="884.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="139.0" text="Produkte bearbeiten" />
+            <ScrollPane layoutY="102.0" prefHeight="497.0" prefWidth="700.0">
+               <content>
+                  <GridPane fx:id="mGrid" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="698.0" style="-fx-border-color: black;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="164.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <Button fx:id="mVorspeise" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Vorspeise" />
+            <Button fx:id="mHauptgang" layoutX="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Hauptgang" />
+            <Button fx:id="mDessert" layoutX="350.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Dessert" />
+            <Button fx:id="mGetraenke" layoutX="525.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Getränke" />
+            <ScrollPane hbarPolicy="NEVER" layoutX="702.0" layoutY="102.0" prefHeight="451.0" prefWidth="322.0">
+               <content>
+                  <GridPane fx:id="mOrder" prefHeight="449.0" prefWidth="319.0" style="-fx-border-color: black;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="218.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="82.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <Button fx:id="mTotalButton" alignment="TOP_LEFT" layoutX="702.0" layoutY="555.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.0" text="Gesamt:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <Label layoutX="782.0" layoutY="40.0" prefHeight="54.0" prefWidth="163.0" text="Bestellung:">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="mTotalPrice" alignment="CENTER" layoutX="819.0" layoutY="555.0" prefHeight="42.0" prefWidth="202.0" text="0,00" />
          </children>
       </Pane>
-      <Pane fx:id="layer2" prefHeight="559.0" prefWidth="789.0" visible="false">
+      <Pane fx:id="layer2" prefHeight="600.0" prefWidth="1024.0" visible="false">
          <children>
             <TabPane fx:id="eTabPane" layoutX="10.0" layoutY="14.0" prefHeight="539.0" prefWidth="293.0" style="-fx-border-color: black;">
                <tabs>
@@ -46,11 +76,11 @@
                         </ScrollPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="eDesVBox" closable="false" text="Dessert">
+                  <Tab closable="false" text="Dessert">
                      <content>
                         <ScrollPane>
                            <content>
-                              <VBox prefHeight="507.0" prefWidth="290.0" />
+                              <VBox fx:id="eDesVBox" prefHeight="507.0" prefWidth="290.0" />
                            </content>
                         </ScrollPane>
                      </content>
@@ -66,14 +96,14 @@
                   </Tab>
                </tabs>
             </TabPane>
-            <TextField fx:id="eProduktname" layoutX="320.0" layoutY="95.0" promptText="Produktname" />
+            <TextField fx:id="eProduktName" layoutX="320.0" layoutY="95.0" promptText="Produktname" />
             <TextField fx:id="ePreis" layoutX="320.0" layoutY="180.0" promptText="Preis" />
             <Button fx:id="eProduktLoeschen" layoutX="320.0" layoutY="421.0" mnemonicParsing="false" text="Produkt löschen" />
-            <Button fx:id="eProduktHinzufuegen" layoutX="548.0" layoutY="421.0" mnemonicParsing="false" text="Produkt hinzufügen" />
             <ChoiceBox fx:id="eKategorien" layoutX="519.0" layoutY="95.0" prefWidth="150.0" />
             <Label layoutX="519.0" layoutY="78.0" text="Kategorie" />
-            <Button fx:id="backToLayer1" layoutX="724.0" layoutY="14.0" mnemonicParsing="false" onAction="#showHome" text="zurück" />
-            <Button layoutX="459.0" layoutY="421.0" mnemonicParsing="false" text="Speichern" />
+            <Button fx:id="backToMain" layoutX="923.0" layoutY="14.0" mnemonicParsing="false" text="zurück" />
+            <Button fx:id="eSpeichern" layoutX="519.0" layoutY="421.0" mnemonicParsing="false" text="Speichern" />
+            <Button fx:id="eHinzufuegen" layoutX="723.0" layoutY="421.0" mnemonicParsing="false" text="Produkt hinzufügen" />
          </children>
       </Pane>
    </children>

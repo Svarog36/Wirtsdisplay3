@@ -7,7 +7,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
 import java.util.Map;
 
 
@@ -29,7 +28,7 @@ public class Controller {
     Button eProduktLoeschen, eSpeichern, eHinzufuegen;
 
     @FXML
-    ChoiceBox eKategorien;
+    ChoiceBox<String> eKategorien;
 
     @FXML
     TabPane eTabPane;
@@ -77,6 +76,8 @@ public class Controller {
 
         layer2.setVisible(true);
         layer2.setDisable(false);
+
+        MainPage.clearOrders(mOrder, mTotalPrice);
 
         editor.init(eKategorien,eVorVBox, eHauVBox, eDesVBox, eGetVBox, eProduktName, ePreis, eProduktLoeschen, eSpeichern, eHinzufuegen);
 

@@ -21,24 +21,17 @@ public class MainPage {
 
     void initButtons(GridPane mGrid, GridPane mOrder, Button mVorspeise, Button mHauptgang, Button mDessert, Button mGetraenke, Button mTotalButton, Label mTotalPrice) {
 
-        mVorspeise.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Vorspeisen", mTotalButton, mTotalPrice));
-        mHauptgang.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Hauptspeisen", mTotalButton, mTotalPrice));
-        mDessert.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Dessert", mTotalButton, mTotalPrice));
-        mGetraenke.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Getraenke", mTotalButton, mTotalPrice));
+        mVorspeise.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Vorspeisen", mTotalPrice));
+        mHauptgang.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Hauptspeisen", mTotalPrice));
+        mDessert.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Dessert", mTotalPrice));
+        mGetraenke.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Getraenke", mTotalPrice));
 
-        mTotalButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        mTotalButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> clearOrders(mOrder, mTotalPrice));
 
-            mOrder.getChildren().clear();
-            orders.clear();
-            mOrder.getRowConstraints().remove(mOrder.getRowConstraints().get(0));
-
-            mTotalPrice.setText("0,00");
-
-        });
 
     }
 
-    private void loadGird(GridPane mGrid, GridPane mOrder, String cat, Button mTotalButton, Label mTotalPrice) {
+    private void loadGird(GridPane mGrid, GridPane mOrder, String cat, Label mTotalPrice) {
 
         mGrid.getChildren().clear();
 
@@ -54,14 +47,14 @@ public class MainPage {
                 mGrid.getRowConstraints().add(new RowConstraints());
             }
 
-            mGrid.add(addProductWithHandler(mGrid, mOrder, key, cat, Controller.menu.get(cat).get(key), mTotalButton, mTotalPrice), i, j);
+            mGrid.add(addProductWithHandler(mGrid, mOrder, key, cat, Controller.menu.get(cat).get(key), mTotalPrice), i, j);
             i++;
         }
 
 
     }
 
-    private Product addProductWithHandler(GridPane mGrid, GridPane mOrder, String key, String cat, Double price, Button mTotalButton, Label mTotalPrice) {
+    private Product addProductWithHandler(GridPane mGrid, GridPane mOrder, String key, String cat, Double price, Label mTotalPrice) {
 
         Product product = new Product(key, cat, price);
 
@@ -89,21 +82,20 @@ public class MainPage {
 
                 orders.put(order.getText(), new ArrayList<>(List.of(order, amount)));
 
+
                 mOrder.add(order, 0, mOrder.getRowCount() - 1);
                 mOrder.add(orders.get(order.getText()).get(1), 1, mOrder.getRowCount() - 1);
 
                 mOrder.getRowConstraints().add(new RowConstraints());
 
 
-                adjustPrice(mTotalPrice, price);
-
-
             } else {
 
                 ((Label) orders.get(product.getText()).get(1)).setText(String.valueOf(Integer.parseInt(((Label) orders.get(product.getText()).get(1)).getText()) + 1));
-                adjustPrice(mTotalPrice, price);
 
             }
+
+            adjustPrice(mTotalPrice, price);
 
 
         });
@@ -137,5 +129,17 @@ public class MainPage {
 
     }
 
+    static void clearOrders(GridPane mOrder, Label mTotalPrice){
+
+        mOrder.getChildren().clear();
+        orders.clear();
+
+        if(mOrder.getRowCount() > 1){
+            mOrder.getRowConstraints().remove(mOrder.getRowConstraints().get(0));
+        }
+
+
+        mTotalPrice.setText("0,00");
+    }
 
 }

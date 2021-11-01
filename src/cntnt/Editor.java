@@ -9,13 +9,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 
+
 class Editor{
 
 
     private Product selectedProduct;
     private VBox[] vBoxes;
 
-    void init(ChoiceBox eKategorien, VBox eVorVBox, VBox eHauVBox, VBox eDesVBox, VBox eGetVBox, TextField eProductName, TextField ePreis, Button eProduktLoeschen, Button eSpeichern, Button eHinzufuegen){
+    void init(ChoiceBox<String> eKategorien, VBox eVorVBox, VBox eHauVBox, VBox eDesVBox, VBox eGetVBox, TextField eProductName, TextField ePreis, Button eProduktLoeschen, Button eSpeichern, Button eHinzufuegen){
 
         new Thread(new Task<Void>() {
             @Override
@@ -25,7 +26,11 @@ class Editor{
 
                     vBoxes = new VBox[]{eVorVBox, eHauVBox, eDesVBox, eGetVBox};
 
-                    eKategorien.getItems().addAll(Categories.values());
+                    eKategorien.getItems().clear();
+
+                    for(Categories str : Categories.values()){
+                        eKategorien.getItems().add(str.toString());
+                    }
 
                     eKategorien.setValue(eKategorien.getItems().get(0));
 
@@ -43,7 +48,7 @@ class Editor{
 
     }
 
-    void loadProducts(ChoiceBox eKategorien, VBox[] vBoxes, TextField eProductName, TextField ePreis){
+    void loadProducts(ChoiceBox<String> eKategorien, VBox[] vBoxes, TextField eProductName, TextField ePreis){
 
         Product button;
 
@@ -97,14 +102,14 @@ class Editor{
 
     }
 
-    void addEventhandler(ChoiceBox eKategorien, Product product, TextField eProductName, TextField ePreis){
+    void addEventhandler(ChoiceBox<String> eKategorien, Product product, TextField eProductName, TextField ePreis){
 
         product.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
             eProductName.setText(product.getText());
             ePreis.setText(String.valueOf(product.price).replace("." ,","));
 
-            eKategorien.setValue(Categories.valueOf(product.cat));
+            eKategorien.setValue(String.valueOf(Categories.valueOf(product.cat)));
 
             selectedProduct = product;
 
@@ -113,14 +118,19 @@ class Editor{
     }
 
 
-    void initButtons(Button eProduktLoeschen, Button eSpeichern, Button eHinzufuegen, ChoiceBox eKategorien, TextField eProductName, TextField ePreis) {
+    void initButtons(Button eProduktLoeschen, Button eSpeichern, Button eHinzufuegen, ChoiceBox<String> eKategorien, TextField eProductName, TextField ePreis) {
 
         eSpeichern.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
 
             Controller.menu.get(selectedProduct.cat).remove(selectedProduct.getText());
 
-            Controller.menu.get(selectedProduct.cat).put(eProductName.getText(), Double.parseDouble(ePreis.getText().replace(",", ".")));
+            if(selectedProduct.cat.equals(eKategorien.getValue())){
+                Controller.menu.get(selectedProduct.cat).put(eProductName.getText(), Double.parseDouble(ePreis.getText().replace(",", ".")));
+            }else{
+                Controller.menu.get(eKategorien.getValue()).put(eProductName.getText(), Double.parseDouble(ePreis.getText().replace(",", ".")));
+            }
+
             updateMenu(eKategorien, vBoxes, eProductName, ePreis);
 
 
@@ -128,7 +138,7 @@ class Editor{
 
         eHinzufuegen.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
-            Controller.menu.get(eKategorien.getValue().toString()).put(eProductName.getText(), Double.parseDouble(ePreis.getText().replace(",", ".")));
+            Controller.menu.get(eKategorien.getValue()).put(eProductName.getText(), Double.parseDouble(ePreis.getText().replace(",", ".")));
             updateMenu(eKategorien, vBoxes, eProductName, ePreis);
 
         });
@@ -144,7 +154,7 @@ class Editor{
 
     }
 
-    private void updateMenu(ChoiceBox eKategorien, VBox[] vBoxes, TextField eProductName, TextField ePreis){
+    private void updateMenu(ChoiceBox<String> eKategorien, VBox[] vBoxes, TextField eProductName, TextField ePreis){
 
         ReaderWriter.write(Controller.menu, "./data/Products.txt");
 

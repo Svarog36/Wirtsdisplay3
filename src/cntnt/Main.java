@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -20,7 +21,7 @@ public class Main extends Application {
 
 
         try {
-            root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml")));
         } catch (IOException e) {
             e.printStackTrace();
         }
