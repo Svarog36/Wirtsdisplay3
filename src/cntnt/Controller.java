@@ -2,10 +2,9 @@ package cntnt;
 
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -17,7 +16,7 @@ public class Controller {
     @FXML
     private Button produkteBearbeiten;
     @FXML
-    private Button backToLayer1;
+    private Button backToMain;
 
     @FXML
     private Pane layer1, layer2;
@@ -27,7 +26,7 @@ public class Controller {
     TextField eProduktName, ePreis;
 
     @FXML
-    Button eProduktLoeschen, eProduktHinzufuegen;
+    Button eProduktLoeschen, eSpeichern, eHinzufuegen;
 
     @FXML
     ChoiceBox eKategorien;
@@ -36,25 +35,42 @@ public class Controller {
     TabPane eTabPane;
 
     @FXML
-    VBox eVorVBox, eHauVBox,  eGetVBox;
+    VBox eVorVBox, eHauVBox, eDesVBox, eGetVBox;
 
-    Editor editor = new Editor();
+    @FXML
+    GridPane mGrid, mOrder;
+
+    @FXML
+    Button mVorspeise, mHauptgang, mDessert, mGetraenke, mTotalButton;
+
+    @FXML
+    Label mTotalPrice;
+
+
+
+    private final Editor editor = new Editor();
+    private final MainPage mainPage = new MainPage();
     static Map<String, Map<String, Double>> menu;
 
     public void initialize(){
 
         menu = ReaderWriter.read("./data/Products.txt");
 
-        ReaderWriter.write(menu, "./data/Products.txt");
+        initButtons();
 
-        editor.init(eKategorien, eVorVBox, eHauVBox,  eGetVBox);
+        mainPage.initButtons(mGrid, mOrder, mVorspeise, mHauptgang, mDessert, mGetraenke, mTotalButton, mTotalPrice);
 
+    }
+
+    private void initButtons(){
+
+        produkteBearbeiten.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> showEditor());
+        backToMain.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> showHome());
     }
 
 
 
-
-    public void showEditor(){
+    private void showEditor(){
 
         layer1.setVisible(false);
         layer1.setDisable(true);
@@ -62,10 +78,11 @@ public class Controller {
         layer2.setVisible(true);
         layer2.setDisable(false);
 
+        editor.init(eKategorien,eVorVBox, eHauVBox, eDesVBox, eGetVBox, eProduktName, ePreis, eProduktLoeschen, eSpeichern, eHinzufuegen);
 
     }
 
-    public void showHome(){
+    private void showHome(){
 
         layer1.setVisible(true);
         layer1.setDisable(false);

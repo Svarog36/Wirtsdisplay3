@@ -1,11 +1,13 @@
 package cntnt;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -31,9 +33,16 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
 
-
+        primaryStage.setWidth(1040);//1024
+        primaryStage.setHeight(640);//600
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
+
+        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
+                System.out.println("Height: " + primaryStage.getHeight() + " Width: " + primaryStage.getWidth());
+
+        primaryStage.widthProperty().addListener(stageSizeListener);
+        primaryStage.heightProperty().addListener(stageSizeListener);
     }
 
 
