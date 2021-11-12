@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cntnt.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cntnt.Controller">
    <children>
       <Pane fx:id="layer1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0">
          <children>
             <Button fx:id="produkteBearbeiten" layoutX="884.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="139.0" text="Produkte bearbeiten" />
-            <ScrollPane layoutY="102.0" prefHeight="497.0" prefWidth="700.0">
-               <content>
-                  <GridPane fx:id="mGrid" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="698.0" style="-fx-border-color: black;">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="164.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
-               </content>
-            </ScrollPane>
-            <Button fx:id="mVorspeise" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Vorspeise" />
+            <Button fx:id="mVorspeise" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Suppen" />
             <Button fx:id="mHauptgang" layoutX="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Hauptgang" />
-            <Button fx:id="mDessert" layoutX="350.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Dessert" />
+            <Button fx:id="mDessert" layoutX="350.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Kuchen" />
             <Button fx:id="mGetraenke" layoutX="525.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="175.0" text="Getränke" />
             <ScrollPane hbarPolicy="NEVER" layoutX="702.0" layoutY="102.0" prefHeight="451.0" prefWidth="322.0">
                <content>
@@ -52,13 +48,28 @@
                </font>
             </Label>
             <Label fx:id="mTotalPrice" alignment="CENTER" layoutX="819.0" layoutY="555.0" prefHeight="42.0" prefWidth="202.0" text="0,00" />
+            <ScrollPane hbarPolicy="NEVER" layoutX="1.0" layoutY="102.0">
+               <content>
+                  <GridPane fx:id="mGrid" prefHeight="495.0" prefWidth="699.0" style="-fx-border-color: black;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="174.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="164.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
          </children>
       </Pane>
       <Pane fx:id="layer2" prefHeight="600.0" prefWidth="1024.0" visible="false">
          <children>
             <TabPane fx:id="eTabPane" layoutX="10.0" layoutY="14.0" prefHeight="539.0" prefWidth="293.0" style="-fx-border-color: black;">
                <tabs>
-                  <Tab closable="false" text="Vorspeisen">
+                  <Tab closable="false" text="Suppen">
                      <content>
                         <ScrollPane>
                            <content>
@@ -67,7 +78,7 @@
                         </ScrollPane>
                      </content>
                   </Tab>
-                  <Tab closable="false" text="Hauptspeisen">
+                  <Tab closable="false" text="Hauptgang">
                      <content>
                         <ScrollPane>
                            <content>
@@ -76,7 +87,7 @@
                         </ScrollPane>
                      </content>
                   </Tab>
-                  <Tab closable="false" text="Dessert">
+                  <Tab closable="false" text="Kuchen">
                      <content>
                         <ScrollPane>
                            <content>

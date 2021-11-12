@@ -14,4 +14,9 @@ public class Product extends Button {
         this.cat = cat;
         this.price = price;
     }
+
+    public String getNamePlusPrice(){
+        return super.getText() + "\n" + price + "€";
+    }
+
 }

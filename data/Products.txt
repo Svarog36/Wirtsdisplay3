@@ -1,18 +1,32 @@
-!Vorspeisen
-Vorspeise 1#4.0
-Salat#4.0
-!Hauptspeisen
-7 Knödel mit Krautsalat#9.2
-Kaiserschmarrn#8.0
-Brotzeitteller mit Speck#6.2
+!Kuchen
+Test#4.0
+Kaesekuchen#5.1
 !Getraenke
-Radler Groß#2.0
+bvxs#3.0
+df#3.0
+ghd#3.0
+hgd#3.0
 Bier 0,5#2.0
 Radler 0,5#3.1
+Spezi 0,512#3.0
+fgsfsd#3.0
+bvxsgfs#3.0
+Spezi 0,5123#3.0
+Spezi 0,55#3.0
+Spezi 06#3.0
+fgs#3.0
+Spezi 0,51#3.0
+fgsfsdfgsgfs#3.0
+Spezi 0,51234#3.0
 Radler#2.1
+ghddfa#3.0
 Radler ganzgroß#2.5
 Radler 0,25#2.1
 Spezi 0,5#3.0
-!Dessert
-Test#4.0
-Kaesekuchen#5.1
+!Suppen
+Vorspeise 1#4.0
+Salat#4.0
+!Hauptgang
+7 Knödel mit Krautsalat#9.2
+Kaiserschmarrn#8.0
+Brotzeitteller mit Speck#6.2

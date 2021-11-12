@@ -21,9 +21,9 @@ public class MainPage {
 
     void initButtons(GridPane mGrid, GridPane mOrder, Button mVorspeise, Button mHauptgang, Button mDessert, Button mGetraenke, Button mTotalButton, Label mTotalPrice) {
 
-        mVorspeise.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Vorspeisen", mTotalPrice));
-        mHauptgang.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Hauptspeisen", mTotalPrice));
-        mDessert.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Dessert", mTotalPrice));
+        mVorspeise.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Suppen", mTotalPrice));
+        mHauptgang.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Hauptgang", mTotalPrice));
+        mDessert.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Kuchen", mTotalPrice));
         mGetraenke.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Getraenke", mTotalPrice));
 
         mTotalButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> clearOrders(mOrder, mTotalPrice));
@@ -61,12 +61,17 @@ public class MainPage {
         product.setPrefWidth(mGrid.getCellBounds(0, 0).getWidth());
         product.setPrefHeight(mGrid.getCellBounds(0, 0).getHeight());
 
+        product.setMinHeight(product.getPrefHeight());
+        product.setMinWidth(product.getPrefWidth());
+
         product.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
 
-            if (!orders.containsKey(product.getText())) {
+            if (!orders.containsKey(product.getNamePlusPrice())) {
 
                 Product order = new Product(key, cat, price);
+
+                order.setText(order.getNamePlusPrice());
 
                 order.setPrefWidth(218);
                 order.setPrefHeight(82);
@@ -91,7 +96,7 @@ public class MainPage {
 
             } else {
 
-                ((Label) orders.get(product.getText()).get(1)).setText(String.valueOf(Integer.parseInt(((Label) orders.get(product.getText()).get(1)).getText()) + 1));
+                ((Label) orders.get(product.getNamePlusPrice()).get(1)).setText(String.valueOf(Integer.parseInt(((Label) orders.get(product.getNamePlusPrice()).get(1)).getText()) + 1));
 
             }
 
