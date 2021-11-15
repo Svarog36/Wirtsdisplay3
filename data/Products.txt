@@ -24,9 +24,9 @@ Radler ganzgroß#2.5
 Radler 0,25#2.1
 Spezi 0,5#3.0
 !Suppen
-Vorspeise 1#4.0
-Salat#4.0
+Salat123#4.0
+Vorspeise 123#6.0
 !Hauptgang
-7 Knödel mit Krautsalat#9.2
-Kaiserschmarrn#8.0
+3 Knödel mit Krautsalat#10.5
 Brotzeitteller mit Speck#6.2
+Kaiserschmarrn#9.0

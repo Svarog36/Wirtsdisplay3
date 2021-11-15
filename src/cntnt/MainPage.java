@@ -21,17 +21,17 @@ public class MainPage {
 
     void initButtons(GridPane mGrid, GridPane mOrder, Button mVorspeise, Button mHauptgang, Button mDessert, Button mGetraenke, Button mTotalButton, Label mTotalPrice) {
 
-        mVorspeise.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Suppen", mTotalPrice));
-        mHauptgang.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Hauptgang", mTotalPrice));
-        mDessert.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Kuchen", mTotalPrice));
-        mGetraenke.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGird(mGrid, mOrder, "Getraenke", mTotalPrice));
+        mVorspeise.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGrid(mGrid, mOrder, "Suppen", mTotalPrice));
+        mHauptgang.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGrid(mGrid, mOrder, "Hauptgang", mTotalPrice));
+        mDessert.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGrid(mGrid, mOrder, "Kuchen", mTotalPrice));
+        mGetraenke.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> loadGrid(mGrid, mOrder, "Getraenke", mTotalPrice));
 
         mTotalButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> clearOrders(mOrder, mTotalPrice));
 
 
     }
 
-    private void loadGird(GridPane mGrid, GridPane mOrder, String cat, Label mTotalPrice) {
+    private void loadGrid(GridPane mGrid, GridPane mOrder, String cat, Label mTotalPrice) {
 
         mGrid.getChildren().clear();
 
@@ -64,12 +64,17 @@ public class MainPage {
         product.setMinHeight(product.getPrefHeight());
         product.setMinWidth(product.getPrefWidth());
 
+
+
+
         product.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
 
             if (!orders.containsKey(product.getNamePlusPrice())) {
 
                 Product order = new Product(key, cat, price);
+
+                order.setAlignment(Pos.BASELINE_LEFT);
 
                 order.setText(order.getNamePlusPrice());
 
